@@ -1,0 +1,13 @@
+{
+  "name": "doctor-appointment-api",
+  "version": "1.0.0",
+  "description": "API for managing doctor appointments",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3"
+  }
+}

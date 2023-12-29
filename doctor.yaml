@@ -1,0 +1,126 @@
+openapi: 3.0.0
+info:
+  title: Doctor Appointment API
+  version: 1.0.0
+paths:
+  /reservations:
+    get:
+      summary: Get all reservations
+      operationId: getAllReservations
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              example:
+                reservations:
+                  - id: 1
+                    doctor: "Dr. Smith"
+                    customerName: "John Doe"
+                    time: "2023-01-01T10:00:00"
+                    durationMinutes: 30
+    post:
+      summary: Add a new reservation
+      operationId: addReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '201':
+          description: Reservation created successfully
+  /reservations/{reservationId}:
+    parameters:
+      - name: reservationId
+        in: path
+        required: true
+        description: ID of the reservation to manipulate
+        schema:
+          type: integer
+    get:
+      summary: Get reservation by ID
+      operationId: getReservationById
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              example:
+                id: 1
+                doctor: "Dr. Smith"
+                customerName: "John Doe"
+                time: "2023-01-01T10:00:00"
+                durationMinutes: 30
+    put:
+      summary: Update an existing reservation
+      operationId: updateReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '200':
+          description: Reservation updated successfully
+    delete:
+      summary: Delete reservation by ID
+      operationId: deleteReservation
+      responses:
+        '204':
+          description: Reservation deleted successfully
+  /reservations/search:
+    get:
+      summary: Search reservations
+      operationId: searchReservations
+      parameters:
+        - name: service
+          in: query
+          description: Service provided by the doctor
+          schema:
+            type: string
+        - name: customerName
+          in: query
+          description: Customer name
+          schema:
+            type: string
+        - name: startTime
+          in: query
+          description: Start time for the search period
+          schema:
+            type: string
+            format: date-time
+        - name: endTime
+          in: query
+          description: End time for the search period
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              example:
+                reservations:
+                  - id: 1
+                    doctor: "Dr. Smith"
+                    customerName: "John Doe"
+                    time: "2023-01-01T10:00:00"
+                    durationMinutes: 30
+components:
+  schemas:
+    Reservation:
+      type: object
+      properties:
+        doctor:
+          type: string
+        customerName:
+          type: string
+        time:
+          type: string
+          format: date-time
+        durationMinutes:
+          type: integer
