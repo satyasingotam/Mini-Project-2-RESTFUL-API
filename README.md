@@ -88,7 +88,7 @@ The API uses standard HTTP status codes to indicate the success or failure of a 
             "time": "2023-01-01T10:00:00",
             "durationMinutes": 30
           }
-          // Additional reservations...
+          // Additional reservations etc...
         ]
       }
       ```
@@ -184,7 +184,7 @@ The API uses standard HTTP status codes to indicate the success or failure of a 
             "time": "2023-01-01T10:00:00",
             "durationMinutes": 30
           }
-          // Additional reservations...
+          // Additional reservations etc....
         ]
       }
       ```
